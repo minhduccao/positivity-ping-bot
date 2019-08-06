@@ -6,8 +6,6 @@ import praw
 import time
 import random
 
-MESSAGES = 'I hope you have a great day! :)'
-
 
 def setup():
     """Creates Reddit instance for the bot"""
@@ -17,7 +15,14 @@ def setup():
     return reddit
 
 
-def runBot(reddit, oldCommentID):
+def loadMessages():
+    with open('messages.txt') as messages:
+        messageList = []
+        for line in messages:
+            messageList.append(line.strip())
+    return messageList
+
+def runBot(reddit, oldCommentID, messages):
     """Runs PositivityPingBot and returns old comment ID"""
     results = reddit.subreddit('cardistryredesign').comments()      # Using r/cardistryredesign as a test
     comments = {result.id: result for result in results}       # Stores comment ID and Reddit comment obj into a dict
@@ -36,7 +41,7 @@ def runBot(reddit, oldCommentID):
             break
 
         print('Replied to comment: {}'.format(randomID))
-        comments[randomID].reply(MESSAGES)
+        comments[randomID].reply(random.choice(messages))
         oldCommentID = randomID
         break
     return oldCommentID
@@ -44,7 +49,8 @@ def runBot(reddit, oldCommentID):
 
 if __name__ == '__main__':
     oldCommentID = ''
+    messages = loadMessages()
     reddit = setup()
     while True:
-        oldCommentID = runBot(reddit, oldCommentID)
+        oldCommentID = runBot(reddit, oldCommentID, messages)
         time.sleep(60)

@@ -1,0 +1,8 @@
+### To Do / Potential Additions List
+
+[ ] 1. Set time to run every 24 hours
+[ ] 2. Create more reply messages
+[ ] 3. Add description below each reply
+[ ] 4. Allow users to suggest reply messages
+[ ] 5. Create/use text file to load messages
+[ ] 6. Create filter for manual vetting of suggestions
