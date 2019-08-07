@@ -54,14 +54,36 @@ def run_bot(reddit, messages, last_reply_time):
             print('Replied to comment: {}'.format(randomID))
             comments[randomID].reply(random.choice(messages))
             return time.time()
-    time.sleep(60)
+    time.sleep(60)                                                      # Checks inbox every 60 seconds
     return last_reply_time
 
 
+def filter():
+    approved_msgs = []
+    with open('suggestions.txt', 'r') as suggestions:
+        for msg in suggestions:
+            choice = input('Do you accept the following suggestion (Y/N): ' + msg).lower()
+            while len(choice) != 1 or choice not in 'yn':
+                choice = input('Invalid choice.\nDo you accept the following suggestion (Y/N): ' + msg).lower()
+            if choice == 'y':
+                approved_msgs.append(msg)
+                print('> Accepted suggestion: {}'.format(msg), end='')
+            else:
+                print("> Discarded suggestion: {}".format(msg), end='')
+    print('Adding {} suggested messages to \'messages.txt\'. Cleared old suggestions.'.format(str(len(approved_msgs))))
+    with open('suggestions.txt', 'w'):                                  # Clearing suggestions.txt
+        pass
+    if len(approved_msgs) > 0:
+        with open('messages.txt', 'a') as messages:
+            for msg in approved_msgs:
+                messages.write(msg)
+
+
 if __name__ == '__main__':
+    if FILTER_SUGGESTIONS:
+        filter()
     messages = load_messages()
     reddit = setup()
-    last_reply_time = time.time() - DELAY                              # - DELAY is to start posting
+    last_reply_time = time.time() - DELAY                               # - DELAY is to start posting
     while True:
         last_reply_time = run_bot(reddit, messages, last_reply_time)
-        print(last_reply_time)

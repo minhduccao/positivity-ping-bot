@@ -5,4 +5,4 @@
 [X] 3. Add description below each reply
 [X] 4. Allow users to suggest reply messages
 [X] 5. Create/use text file to load messages
-[ ] 6. Create filter for manual vetting of suggestions
+[X] 6. Create filter for manual vetting of suggestions
