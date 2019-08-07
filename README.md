@@ -12,5 +12,5 @@ This bot extracts the most recent 100 comments from r/all (Reddit's frontpage) e
 4. Run bot.py
 5. (OPTIONAL) Add custom messages into 'messages.txt'
 6. (OPTIONAL) Set 'FILTER SUGGESTIONS' to True to vet suggested messages upon start
-7. (OPTIONAL) Set 'DELAY' to your suggested 
+7. (OPTIONAL) Set 'DELAY' to your suggested reply time
 ```
