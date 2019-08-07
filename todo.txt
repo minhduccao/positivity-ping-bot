@@ -6,3 +6,4 @@
 [X] 4. Allow users to suggest reply messages
 [X] 5. Create/use text file to load messages
 [X] 6. Create filter for manual vetting of suggestions
+[ ] 7. Create function for tagging bot
