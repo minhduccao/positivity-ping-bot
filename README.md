@@ -3,6 +3,16 @@ This Reddit bot will reply to a random user's comment with a positive message ev
 
 This bot extracts the most recent 100 comments from r/all (Reddit's frontpage) every 24 hours and chooses 1 out of the 100 comments to reply to with a positive message. The bot also accepts suggestions through private messages and allows the user to vet suggestions to be added to a list of potential replies.
 
+You can see it in action here: https://www.reddit.com/user/PositivityPingBot
+
+# File Explanation
+```
+bot.py          | Code that runs the bot and its functions
+praw.ini        | Reddit credentials and oauth authentication
+messages.txt    | Messages that the bot can choose from to reply with
+suggestions.txt | User suggestions for messages from Reddit PMs
+```
+
 ---
 # Usage
 ```
