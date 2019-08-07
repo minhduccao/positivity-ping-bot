@@ -43,7 +43,7 @@ def run_bot(reddit, messages, last_reply_time):
 
     # Runs if it's time to post a daily reply
     if time.time() - last_reply_time >= DELAY:
-        results = reddit.subreddit('cardistryredesign').comments()      # Using r/cardistryredesign as a test
+        results = reddit.subreddit('all').comments()
         comments = {result.id: result for result in results}            # Stores comment ID and Reddit comment obj into a dict
 
         # Checks if no comments can be found
