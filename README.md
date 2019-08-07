@@ -17,7 +17,7 @@ suggestions.txt | User suggestions for messages from Reddit PMs
 # Usage
 ```
 1. Clone repository
-2. Download and install PRAW
+2. Install PRAW and any other needed dependencies
 3. Add in Reddit credentials into praw.ini
 4. Run bot.py
 5. (OPTIONAL) Add custom messages into 'messages.txt'
