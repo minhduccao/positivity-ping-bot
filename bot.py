@@ -6,7 +6,7 @@ import praw
 import time
 import random
 
-FILTER_SUGGESTIONS = False      # Set to True to vet suggested reply messages, currently unused
+FILTER_SUGGESTIONS = False      # Set to True to approve/reject suggested reply messages
 DELAY = 86400                   # Currently set to reply every 24 hours (in seconds)
 
 
@@ -59,6 +59,7 @@ def run_bot(reddit, messages, last_reply_time):
 
 
 def filter():
+    """Allows user to accept/reject message suggestions"""
     approved_msgs = []
     with open('suggestions.txt', 'r') as suggestions:
         for msg in suggestions:
@@ -84,6 +85,10 @@ if __name__ == '__main__':
         filter()
     messages = load_messages()
     reddit = setup()
-    last_reply_time = time.time() - DELAY                               # - DELAY is to start posting
+    last_reply_time = time.time() - DELAY                               # - DELAY is to start posting on startup
     while True:
-        last_reply_time = run_bot(reddit, messages, last_reply_time)
+        try:
+            last_reply_time = run_bot(reddit, messages, last_reply_time)
+        except Exception as err:
+            print(str(err))
+            time.sleep(600)                                             # Sleep for 10 minutes if exception occurs
